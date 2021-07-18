@@ -1,0 +1,10 @@
+{
+	"name": "com.steveymcguy.common",
+	"version": "1.0.0",
+	"description": "A Collection of helpful Assets useful for a variety of Projects",
+	"displayName": "SteveyMcGuy Common",
+	"unity": "2020.3",
+	"dependencies": {
+		"com.unity.textmeshpro": "3.0.6"
+	}
+}
