@@ -10,6 +10,9 @@ namespace Common
 		{
 			public float FuseTime;
 
+			[Tooltip("Instead of Destroying this GameObject return it to a GameObjectPool")]
+			public bool ReturnToPool;
+
 			private float _time;
 
 			// Update is called once per frame
@@ -17,7 +20,22 @@ namespace Common
 			{
 				if ((_time += Time.deltaTime) > FuseTime)
 				{
-					Destroy(gameObject);
+					if (!ReturnToPool)
+					{
+						Destroy(gameObject);
+					}
+					else
+					{
+						if (TryGetComponent(out Pool.PooledGameObject pooledObj))
+						{
+							pooledObj.Return();
+						}
+						else
+						{
+							Debug.LogWarning($"Destroying '{gameObject.name}' instead of returning to GameObjectPool as no PooledGameObject component found");
+							Destroy(gameObject);
+						}
+					}
 				}
 			}
 		}  

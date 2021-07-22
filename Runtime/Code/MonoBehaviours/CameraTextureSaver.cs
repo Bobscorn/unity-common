@@ -53,12 +53,12 @@ namespace Common
 
 				Destroy(img);
 
-				File.WriteAllBytes(Path.Combine(Application.persistentDataPath, "Backgrounds", fileName + $" {++_counter:00}.png"), bytes);
+				File.WriteAllBytes(System.IO.Path.Combine(Application.persistentDataPath, "Backgrounds", fileName + $" {++_counter:00}.png"), bytes);
 			}
 
 			public void SavePNGCapture()
 			{
-				ScreenCapture.CaptureScreenshot(Path.Combine(Application.persistentDataPath, "Backgrounds", fileName + $" {++_counter:00}.png"), ResolutionScale);
+				ScreenCapture.CaptureScreenshot(System.IO.Path.Combine(Application.persistentDataPath, "Backgrounds", fileName + $" {++_counter:00}.png"), ResolutionScale);
 			}
 		}
 

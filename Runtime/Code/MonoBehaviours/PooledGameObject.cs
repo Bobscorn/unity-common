@@ -10,6 +10,12 @@ namespace Common
 		public class PooledGameObject : MonoBehaviour
 		{
 			public bool InUse = false;
+
+			public void Return()
+			{
+				InUse = false;
+				gameObject.SetActive(false);
+			}
 		}  
 	}
 }
