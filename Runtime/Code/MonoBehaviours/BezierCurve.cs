@@ -311,7 +311,7 @@ namespace Common
 					float term1 = 2 * -mt; // 1 * t^3
 					float term2 = -2 * t + 2 * mt;
 					float term3 = 2 * t;
-					return weights[0] * term1 + weights[1] * term2 + weights[2] * term3;
+					return Vector3.Normalize(weights[0] * term1 + weights[1] * term2 + weights[2] * term3);
 				}
 				if (n == 3)
 				{
@@ -323,7 +323,7 @@ namespace Common
 					//float term2 = 3 * mt * (3 * t - 1); // 3 * (1 - t)^2 * t^1
 					//float term3 = 6 * t - 9 * t2; // 3 * (1 - t)^1 * t^2
 					//float term4 = 3 * t2;         // 1 * (1 - t)^0 * t^3
-					return 3f * mt * mt * (weights[1] - weights[0]) + 6f * mt * t * (weights[2] - weights[1]) + 3f * t * t * (weights[3] - weights[2]);
+					return Vector3.Normalize(3f * mt * mt * (weights[1] - weights[0]) + 6f * mt * t * (weights[2] - weights[1]) + 3f * t * t * (weights[3] - weights[2]));
 					//return weights[0] * term1 + weights[1] * term2 + weights[2] * term3 + weights[3] * term4;
 				}
 				else
@@ -340,7 +340,7 @@ namespace Common
 						float term = (a * Mathf.Pow(mt, b - c) * Mathf.Pow(t, c - 1) * (b * t - c)) / (t - 1);
 						val += weights[k] * term;
 					}
-					return val;
+					return val.normalized;
 				}
 			}
 		}

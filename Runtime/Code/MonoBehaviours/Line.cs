@@ -29,7 +29,7 @@ namespace Common
 
 			public override Vector3 GetTangentAt(float t)
 			{
-				return transform.TransformDirection(B).normalized;
+				return transform.TransformDirection(B - A).normalized;
 			}
 
 			public float CalculateLength()
