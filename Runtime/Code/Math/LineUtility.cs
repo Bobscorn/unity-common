@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Common
 {
-	namespace Math
+	namespace MathStuff
 	{
 
 		public struct PointPlane

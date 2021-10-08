@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Common.Math;
+using Common.MathStuff;
 
 namespace Common
 {
@@ -44,6 +44,9 @@ namespace Common
 
 		public class Path : IPathObject
 		{
+			[Tooltip("Whether to wrap values of T above 1 back down, otherwise T will be clamped to 0..1")]
+			public bool WrapAround;
+
 			[SerializeField]
 			private List<IPathObject> m_PathSegments;
 
@@ -383,7 +386,10 @@ namespace Common
 			// World Space
 			public override Vector3 GetPositionAt(float t)
 			{
-				t = Mathf.Clamp01(t);
+				if (WrapAround)
+					t %= 1f;
+				else
+					t = Mathf.Clamp01(t);
 				float t_offset = 0f;
 				foreach (var segment in PathSegments)
 				{
@@ -400,7 +406,7 @@ namespace Common
 					t_offset += segment_length_local;
 				}
 
-				Debug.Log("Path couldn't Return position, likely due to incorrect Length");
+				Debug.LogWarning("Path couldn't Return position, likely due to incorrect Length");
 				return Vector3.zero;
 			}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using Common.Math;
+using Common.MathStuff;
 
 namespace Common
 {
